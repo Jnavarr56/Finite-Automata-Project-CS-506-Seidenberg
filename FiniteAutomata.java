@@ -13,8 +13,9 @@ public class FiniteAutomata {
 
     //Q (set of states): Variable for array of Nodes that represents our set of states
     private Node[] setOfStates;
+    private int numStates;
     private int stateIdx;
-
+    
     //∑ (set of symbols): Custom Object instance that helps us determine which language we're using
     private Language inputSymbols;
 
@@ -42,7 +43,7 @@ public class FiniteAutomata {
 
     }
 
-    private void defineStateSetSize(int numStates) {
+    private void setNumStates(int numStates) {
 
         setOfStates = new Node[numStates];
 

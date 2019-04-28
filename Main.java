@@ -5,7 +5,8 @@ public class Main {
         Menu projectMenu = new Menu();
         projectMenu.printIntro();
 
-
+        FiniteAutomata CS_506_FSM = new FiniteAutomata();
+        
         
         
 
