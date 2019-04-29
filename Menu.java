@@ -2,12 +2,14 @@ import java.util.*;
 
 public class Menu {
 
+    private Scanner scanner = new Scanner(System.in);
+
     String[] introText = {
 
         "=====Welcome to my FSM project for CS 506 at Pace University.=====\n" +
         "This project is implemented in Java attempts to create a \n" + 
         "\"set up\" wizard for creating a simple Deterministic Finite\n" +
-        "Automata. Hit enter to continue.\n",
+        "Automata.\n",
 
         "==Background:==\n" +
         "FSM's are basically flowchart style collections of decisions used\n" + 
@@ -16,7 +18,7 @@ public class Menu {
 
         "==Notation and Implementation:==\n" +
         "In computer science we use the following notation to describe FSMs:\n" + 
-        "{Q, ∑, q, F, δ}", 
+        "{Q, ∑, q, F, δ} (hit enter to continue after each line)", 
 
         " - Q: Finite set of states", 
 
@@ -45,27 +47,29 @@ public class Menu {
 
     };
 
-    public Menu() {
+    private int textSpeed; 
+
+    public Menu(int textSpeed) {
+
+        this.textSpeed = textSpeed;
 
     }
-
+    
     public void printIntro() {
-
-        Scanner scan = new Scanner(System.in);
 
         String input;
 
-        Helpers.typeDelayEffect(20, "Skip Intro? [Yy/Nn]: ");
+        Helpers.typeDelayEffect(textSpeed, "Skip Intro? [Yy/Nn]: ");
         
-        input = Character.toString(scan.next().toLowerCase().charAt(0));
+        input = Character.toString(scanner.next().toLowerCase().charAt(0));
 
         if (input.equals("n")) {
 
             for (String introSection : introText) {
 
-                Helpers.typeDelayEffect(20, introSection);
+                Helpers.typeDelayEffect(textSpeed, introSection);
     
-                input = scan.nextLine();
+                input = scanner.nextLine();
     
                 if (!input.equals("")) {
     
