@@ -1,6 +1,6 @@
 public class Helpers {
 
-    private static void delay(int delay) {
+    public static void delay(int delay) {
 
         try { 
             
@@ -16,11 +16,13 @@ public class Helpers {
 
     }
 
-    public static void typeDelayEffect(int delay, String text) {
+    public static void typeDelayEffect(int delay, String text, int delayMult) {
 
         for (int c = 0; c < text.length(); c++) {
 
-            delay(delay);
+            delay(
+                !String.valueOf(text.charAt(c)).matches(".") ? delay * delayMult : delay
+            );
 
             System.out.print(text.charAt(c));
 

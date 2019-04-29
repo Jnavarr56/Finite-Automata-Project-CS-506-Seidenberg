@@ -59,7 +59,7 @@ public class Menu {
 
         String input;
 
-        Helpers.typeDelayEffect(textSpeed, "Skip Intro? [Yy/Nn]: ");
+        Helpers.typeDelayEffect(textSpeed, "Skip Intro? [Yy/Nn]: ", 25);
         
         input = Character.toString(scanner.next().toLowerCase().charAt(0));
 
@@ -67,7 +67,7 @@ public class Menu {
 
             for (String introSection : introText) {
 
-                Helpers.typeDelayEffect(textSpeed, introSection);
+                Helpers.typeDelayEffect(textSpeed, introSection, 25);
     
                 input = scanner.nextLine();
     

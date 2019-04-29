@@ -10,7 +10,7 @@ public class Main {
         // Initialize our FSM object.
         FiniteAutomata CS_506_FSM = new FiniteAutomata(20);
         // Call method to that runs feature to walk user through defining FSM parameters. 
-        CS_506_FSM.defineFeatures();
+        CS_506_FSM.defineInitialFeatures();
 
 
         
