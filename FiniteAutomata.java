@@ -13,12 +13,13 @@ public class FiniteAutomata {
     private int charIdx = 0;
 
     //Q (set of states): Variable for array of Nodes that represents our set of states
-    //q: (initial state): This will be represented by the Node instance at setOfStates.get(0)
     private ArrayList<Node> setOfStates = Node.getGlobalNodeSet();
     //F: (set of final states): 
     private ArrayList<Node> setOfFinalStates = Node.getFinalNodeSet();
     //∑ (set of symbols): Custom Object instance that helps us determine which language we're using
     private Language inputSymbols;
+
+    private boolean started = false;
 
 
     // δ: (transition functions) these will be defined in a simple logic in each Node instance's run() method.
@@ -41,6 +42,19 @@ public class FiniteAutomata {
         return charIdx == tape.length() - 1;
     
     }
+
+    public char getCurrentChar() {
+        
+        return tape.charAt(charIdx);
+    
+    }
+
+    public int getCharIdx() {
+        
+        return charIdx;
+    
+    }
+
 
     public void defineInitialFeatures() {
 
@@ -111,6 +125,18 @@ public class FiniteAutomata {
 
         };
 
+        Helpers.typeDelayEffect(
+            textSpeed,
+            "  -- ALL STATES DEFINED " + Node.getGlobalNodeSetStr(true) + " ---\n",
+            50
+        );
+
+        Helpers.typeDelayEffect(
+            textSpeed*2,
+            "  -- GENERATING TRANSITION STATE TABLE ---\n",
+            25
+        );
+
         TransitionFunction.printStateTransitionTable();
         
     }
@@ -119,6 +145,28 @@ public class FiniteAutomata {
     public Language getLanguage() {
 
         return inputSymbols;
+
+    }
+
+    public void runMachine() {
+
+        System.out.print("Enter the pattern you'd like to test: ");
+
+        tape = new Scanner(System.in).next();
+
+        setOfStates.get(0).run();
+
+    }
+
+    public boolean getStarted() {
+
+        return started;
+
+    }
+
+    public void setStarted() {
+
+        started = true;
 
     }
 

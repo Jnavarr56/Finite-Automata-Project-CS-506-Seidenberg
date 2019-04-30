@@ -36,9 +36,31 @@ public class TransitionFunction {
     public static void printStateTransitionTable() {
 
         for (TransitionFunction t : TransitionFunction.GLOBAL_TRANSITION_FUNCTIONSET) {
-            System.out.println("q" + t.belongsToState.getGlobalNodeID() + ": " + t.getRuleAsStr());
+            System.out.println("   q" + t.belongsToState.getGlobalNodeID() + ": " + t.getRuleAsStr());
         }
 
+        String[] finalStates = new String[Node.getFinalNodeSet().size()];
+        for (int i = 0; i < Node.getFinalNodeSet().size(); i++) {
+            finalStates[i] = "q" + Node.getFinalNodeSet().get(i).getGlobalNodeID();
+        }
+        System.out.println("   Final States: " + Arrays.toString(finalStates));
+
+    }
+
+    public boolean isInFunction(char currChar) {
+
+        for (int i = 0; i < charSet.length; i++) {
+            if (charSet[i] == currChar) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    public Node getNextState() {
+        return nextState;
     }
 
 

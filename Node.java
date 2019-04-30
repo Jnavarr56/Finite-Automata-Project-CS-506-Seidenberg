@@ -238,5 +238,53 @@ public class Node {
 
     }
 
+    public void run() {
+        boolean trueEnd = false;
+        if (belongsToFA.isLastTapeChar()) {
+            trueEnd = true;
+        }
+
+        if (!belongsToFA.getStarted()) {
+            belongsToFA.setStarted();
+        }
+        else {
+            belongsToFA.incrementTapeChar();
+        }
+
+        System.out.println("q" + getGlobalNodeID() + " processing " + belongsToFA.getCurrentChar());
+
+        char currentCharacter = belongsToFA.getCurrentChar();
+        boolean isTheLastCharacter = belongsToFA.isLastTapeChar();
+        for (TransitionFunction currentTransitionFunction : transitionFunctions)  {
+            if (currentTransitionFunction.isInFunction(currentCharacter)) {
+                System.out.println(currentTransitionFunction.getRuleAsStr());
+                // IF ON THE LAST CHARACTER
+                if (isTheLastCharacter && trueEnd) {
+                    // if on last character and the transition function's next state is the same as current state
+                    if (currentTransitionFunction.getNextState().getGlobalNodeID() == getGlobalNodeID()) {
+                        // if current state is final accept
+                        if (isFinalState) {
+                            System.out.println("ACCEPT");
+                            return;
+                        }
+                        // if current state is not final then reject
+                       else {
+                            System.out.println("REJECT");
+                            return;
+                        }
+                    }
+
+                    else {
+                        System.out.println("REJECT");
+                    }
+                }
+                // IF IS NOT ON THE LAST CHARACTER
+                else {
+                    System.out.println("moving to q" + currentTransitionFunction.getNextState().getGlobalNodeID());
+                    currentTransitionFunction.getNextState().run();
+                }
+            }
+        }
+    }
     
 }

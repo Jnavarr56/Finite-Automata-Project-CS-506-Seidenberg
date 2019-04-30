@@ -14,7 +14,7 @@ public class Main {
         // Call method that runs feature to walk user through defining each State's Transition Fucntion (δ). 
         CS_506_FSM.defineTransitionFunctions();
 
-
+        CS_506_FSM.runMachine();
 
 
         

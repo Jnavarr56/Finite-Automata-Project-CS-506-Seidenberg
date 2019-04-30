@@ -52,8 +52,6 @@ public class Language {
     // Check to see if character is in the selected language.
     public boolean areLegalChars(String[] charsInput) {
 
-        System.out.println(Arrays.toString(charsInput));
-
         boolean isIn; 
         for (int x = 0; x < charsInput.length; x++) {
             isIn = false;
