@@ -9,8 +9,12 @@ public class Main {
 
         // Initialize our FSM object.
         FiniteAutomata CS_506_FSM = new FiniteAutomata(20);
-        // Call method to that runs feature to walk user through defining FSM parameters. 
+        // Call method to that runs feature to walk user through defining FSM parameters (∑, Q, q). 
         CS_506_FSM.defineInitialFeatures();
+        // Call method that runs feature to walk user through defining each State's Transition Fucntion (δ). 
+        CS_506_FSM.defineTransitionFunctions();
+
+
 
 
         

@@ -3,7 +3,7 @@ import java.util.*;
 public class FiniteAutomata {
 
     //Grab users input.
-    private Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
     //Print speed. 
     private int textSpeed;
 
@@ -30,6 +30,18 @@ public class FiniteAutomata {
 
     }
 
+    public void incrementTapeChar() {
+
+        charIdx = charIdx < tape.length() - 1 ? charIdx + 1 : charIdx;
+    
+    }
+
+    public boolean isLastTapeChar() {
+        
+        return charIdx == tape.length() - 1;
+    
+    }
+
     public void defineInitialFeatures() {
 
         // Setting Language (∑)
@@ -38,7 +50,7 @@ public class FiniteAutomata {
             "  --" + " (∑) Let's start with setting our Input Symbols. Please enter \"binary\" or \"alpha\": ",
             50
         );
-        String languageInput = scanner.next();
+        String languageInput = FiniteAutomata.scanner.next();
         inputSymbols = new Language(languageInput);
         Helpers.typeDelayEffect(
             textSpeed, 
@@ -57,17 +69,17 @@ public class FiniteAutomata {
             "  -- (Q) Please enter the total number of states: ",
             50
         );
-        int stateCountInput = scanner.nextInt();
+        int stateCountInput = FiniteAutomata.scanner.nextInt();
         int stateCount = stateCountInput;
-        while (stateCount > -1) {
-            new Node();
+        while (stateCount > 0) {
+            new Node(this);
             stateCount--;
         }
         Helpers.typeDelayEffect(
             textSpeed, 
             "  -- (Q) You entered " + stateCountInput + ".\n" +
             "  -- (Q) Our set of states looks like this:\n" +
-            "      * " + Node.getGlobalNodeSetStr() + "\n",
+            "      * " + Node.getGlobalNodeSetStr(false) + "\n",
             50
         );
 
@@ -78,17 +90,38 @@ public class FiniteAutomata {
             50
         );
 
-
-
-
-
-        
-
-        
-     
-    
     }
 
+    // Setting Transition Functions (q)
+    public void defineTransitionFunctions() {
+
+        Helpers.typeDelayEffect(
+            textSpeed, 
+            "  -- (δ) Now, we will define the transition functions for our states (node by node).\n" +
+            "  -- (δ) When we are done we will generate a state transition table to summarize our FSM.\n" + 
+            "  -- (δ) To define the transition functions for each state you must enter a space separated\n" +
+            "         list of characters with the name of corresponding state at the end.\n" +
+            "  -- (δ) The checkboxes indicate if a state has been defined yet.\n",
+            50
+        );
+
+        for (Node state : setOfStates) {
+
+            state.defineSelf(textSpeed);
+
+        };
+
+        Helpers.typeDelayEffect(
+            textSpeed, 
+            "      * " + Node.getGlobalNodeSetStr(true) + "\n",
+            50
+        );
+
+        
+
+        
+    }
+    
 
 
 
