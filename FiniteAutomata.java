@@ -150,12 +150,25 @@ public class FiniteAutomata {
 
     public void runMachine() {
 
-        System.out.print("Enter the pattern you'd like to test: ");
+        tape = " ";
 
-        tape = new Scanner(System.in).next();
+        while (tape != "-1")  {
 
-        setOfStates.get(0).run();
+            System.out.print("Enter the pattern you'd like to test: ");
 
+            reset();
+
+            tape = new Scanner(System.in).next();
+    
+            setOfStates.get(0).run();
+
+        }
+
+    }
+
+    public void reset() {
+        charIdx = 0;
+        started = false;
     }
 
     public boolean getStarted() {
@@ -165,7 +178,7 @@ public class FiniteAutomata {
     }
 
     public void setStarted() {
-
+        
         started = true;
 
     }
