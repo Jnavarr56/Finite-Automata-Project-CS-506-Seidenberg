@@ -111,17 +111,16 @@ public class FiniteAutomata {
 
         };
 
-        Helpers.typeDelayEffect(
-            textSpeed, 
-            "      * " + Node.getGlobalNodeSetStr(true) + "\n",
-            50
-        );
-
-        
-
+        TransitionFunction.printStateTransitionTable();
         
     }
     
+
+    public Language getLanguage() {
+
+        return inputSymbols;
+
+    }
 
 
 

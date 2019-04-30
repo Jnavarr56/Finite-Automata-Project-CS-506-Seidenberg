@@ -50,20 +50,24 @@ public class Language {
     }
 
     // Check to see if character is in the selected language.
-    public boolean isLegalChar(char c) {
+    public boolean areLegalChars(String[] charsInput) {
 
-        for (int i = 0; i < languages[selector].length; i++) {
+        System.out.println(Arrays.toString(charsInput));
 
-            if (languages[selector][i] == c) {
-
-                return true;
-
+        boolean isIn; 
+        for (int x = 0; x < charsInput.length; x++) {
+            isIn = false;
+            for (int y = 0; y < languages[selector].length; y++) {
+                if (charsInput[x].charAt(0) == languages[selector][y]) {
+                    isIn = true;
+                    break;
+                }
             }
-
+            if (!isIn) {
+                return false;
+            }
         }
-
-        return false;
-
+        return true;
     } 
 
 }
